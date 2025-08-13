@@ -21,7 +21,22 @@ class PriceCalculator
       count = items.size
       unit_cents = to_cents(product.price)
 
-      unit_cents * count
+      case product.discount_rule&.to_sym
+      when :bogo
+        paid_units = count - (count / 2) # e.g., 5 -> pay 3; 6 -> pay 3
+        paid_units * unit_cents
+      when :bulk_discount
+        threshold = product.discount_threshold
+        pct       = product.discount_percentage
+        if threshold.present? && pct.present? && count >= threshold
+          discounted_unit_cents = (unit_cents * (100 - pct)) / 100.0
+          discounted_unit_cents.round * count
+        else
+          unit_cents * count
+        end
+      else
+        unit_cents * count
+      end
     end
   end
 
