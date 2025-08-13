@@ -1,0 +1,31 @@
+<h1>Products</h1>
+<p><%= link_to 'New Product', new_product_path %></p>
+
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Discount Rule</th>
+      <th>Threshold</th>
+      <th>Percentage</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |p| %>
+      <tr>
+        <td><%= p.product_code %></td>
+        <td><%= p.name %></td>
+        <td><%= Money.new((p.price.to_d*100).round, 'EUR').format %></td>
+        <td><%= p.discount_rule&.humanize || 'None' %></td>
+        <td><%= p.discount_threshold || '-' %></td>
+        <td><%= p.discount_percentage ? "#{p.discount_percentage}%" : '-' %></td>
+        <td><%= link_to 'Edit', edit_product_path(p) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Baskets', baskets_path %></p>

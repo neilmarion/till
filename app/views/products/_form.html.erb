@@ -1,0 +1,29 @@
+<%= form_with(model: @product) do |f| %>
+  <div>
+    <%= f.label :product_code %><br>
+    <%= f.text_field :product_code %>
+  </div>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :price %><br>
+    <%= f.number_field :price, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :discount_rule %><br>
+    <%= f.select :discount_rule, options_for_select([['None', nil]] + Product.discount_rules.keys.map { |k| [k.humanize, k] }, @product.discount_rule), include_blank: false %>
+  </div>
+  <div>
+    <%= f.label :discount_threshold, 'Discount threshold (bulk only)' %><br>
+    <%= f.number_field :discount_threshold %>
+  </div>
+  <div>
+    <%= f.label :discount_percentage, 'Discount percentage (bulk only)' %><br>
+    <%= f.number_field :discount_percentage, step: 1 %>
+  </div>
+  <div>
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>
