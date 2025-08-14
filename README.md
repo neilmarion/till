@@ -90,5 +90,9 @@ bin/rspec
 
 ---
 
+## Screenshot
+
+![Cash Register Screenshot](https://i.imgur.com/0eoxVjC.png)
+
 ## License
 MIT — free to use and modify.
