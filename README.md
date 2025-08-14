@@ -31,8 +31,8 @@ bin/rails db:create db:migrate db:seed
 
 **Seeded products:**
 - **GR1** — Green Tea (€3.11, BOGO)
-- **SR1** — Strawberry (€5.00, bulk discount: 4+ items → 60% off each)
-- **CF1** — Coffee (€11.23, no discount)
+- **SR1** — Strawberry (€5.00, bulk discount: 3 or more items → 10% off each)
+- **CF1** — Coffee (€11.23, bulk discount: 3 or more items → 33.33% off each)
 
 ### 3. Run the Server
 ```bash
