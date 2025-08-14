@@ -35,7 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_13_051905) do
     t.string "name", null: false
     t.decimal "price", precision: 10, scale: 2, default: "0.0", null: false
     t.integer "discount_rule"
-    t.integer "discount_percentage"
+    t.decimal "discount_percentage", precision: 5, scale: 2
     t.integer "discount_threshold"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
