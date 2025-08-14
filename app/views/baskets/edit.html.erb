@@ -1,0 +1,40 @@
+<h1>Basket #<%= @basket.id %></h1>
+<p><strong>Total:</strong> <%= @basket.total_money.format %></p>
+<p><%= link_to 'Back to Baskets', baskets_path %></p>
+
+<h3>Add Item</h3>
+<%= form_with url: basket_basket_items_path(@basket), method: :post do %>
+  <label for="product_id">Product</label><br>
+  <select name="product_id" id="product_id">
+    <% @products.each do |p| %>
+      <option value="<%= p.id %>"><%= "#{p.name} (#{p.product_code})" %></option>
+    <% end %>
+  </select>
+  <%= submit_tag 'Add' %>
+<% end %>
+
+<h3>Items</h3>
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price (unit)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @basket.basket_items.includes(:product).each do |bi| %>
+      <tr>
+        <td><%= bi.product.product_code %></td>
+        <td><%= bi.product.name %></td>
+        <td><%= bi.price_money.format %></td>
+        <td>
+          <%= button_to 'Delete',
+              basket_basket_item_path(@basket, bi),
+              method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

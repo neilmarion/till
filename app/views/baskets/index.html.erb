@@ -1,0 +1,28 @@
+<h1>Baskets</h1>
+<p><%= link_to 'Add Basket', new_basket_path %></p>
+<p><%= link_to 'Products (Admin)', products_path %></p>
+
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Product Codes</th>
+      <th>Total Price (expected)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @baskets.each do |b| %>
+      <% codes = b.basket_items.map { |bi| bi.product.product_code } %>
+      <tr>
+        <td><%= b.id %></td>
+        <td><%= codes.join(', ') %></td>
+        <td><%= b.total_money.format %></td>
+        <td>
+          <%= link_to 'Edit', edit_basket_path(b) %> |
+          <%= button_to 'Delete', basket_path(b), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

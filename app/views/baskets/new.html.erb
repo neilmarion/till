@@ -1,0 +1,6 @@
+<h1>New Basket</h1>
+<p>This prototype creates the basket immediately.</p>
+<%= form_with url: baskets_path, method: :post do %>
+  <%= submit_tag 'Create Basket' %>
+<% end %>
+<p><%= link_to 'Back', baskets_path %></p>
