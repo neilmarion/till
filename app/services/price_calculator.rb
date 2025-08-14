@@ -29,8 +29,8 @@ class PriceCalculator
         threshold = product.discount_threshold
         pct       = product.discount_percentage
         if threshold.present? && pct.present? && count >= threshold
-          discounted_unit_cents = (unit_cents * (100 - pct)) / 100.0
-          discounted_unit_cents.round * count
+          discounted_unit_cents = (unit_cents * (100.00 - pct)) / 100.00
+          discounted_unit_cents * count
         else
           unit_cents * count
         end
